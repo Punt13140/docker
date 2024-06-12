@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  db-cryptobook:
+    image: postgres:16-alpine
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    volumes:
+      - ./data-ignore:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: cryptobook-db
+      POSTGRES_USER: cryptobook-user
+      POSTGRES_PASSWORD: cryptobook-pwd
+    ports: [5442:5432]
